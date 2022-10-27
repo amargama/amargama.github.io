@@ -26,9 +26,9 @@ layout: default
 
   <h1 class="content-title divided">
     {% if site.paginate and site.paginate_path and paginator.page > 1 %}
-      Page {{ paginator.page }}
+      Página {{ paginator.page }}
     {% else %}
-      Contents
+      Publicações
     {% endif %}
   </h1>
 
@@ -36,21 +36,27 @@ layout: default
     
     <ul class="post-list">
       {% for post in paginator.posts %}
-        {% include post-list-item.html %}
+        {% if post.category == "debug" %}
+          {% if site.debug %}
+            {% include post-list-item.html %}
+          {% endif %}
+        {% else %}
+          {% include post-list-item.html %}
+        {% endif %}
       {% endfor %}
     </ul>
 
     {% if paginator.total_pages > 1 %}
 
       <div class="post-pagination">
-        {% if paginator.next_page %}
-          <a href="{{ paginator.next_page_path | prepend: site.baseurl  }}" class="pagination-next btn">&lang;&nbsp;Older</a>
+        {% if paginator.previous_page %}
+          <a href="{{ paginator.previous_page_path | prepend: site.baseurl }}" class="pagination-previous btn">&nbsp;&lang;</a>
         {% else %}
           <span>&nbsp;</span>
         {% endif %}
-        <span class="pagination-number">{{ paginator.page }} of {{ paginator.total_pages }}</span>
-        {% if paginator.previous_page %}
-          <a href="{{ paginator.previous_page_path | prepend: site.baseurl }}" class="pagination-previous btn">Newer&nbsp;&rang;</a>
+        <span class="pagination-number">Página {{ paginator.page }} de {{ paginator.total_pages }}</span>
+        {% if paginator.next_page %}
+          <a href="{{ paginator.next_page_path | prepend: site.baseurl  }}" class="pagination-next btn">&rang;&nbsp;</a>
         {% else %}
           <span>&nbsp;</span>
         {% endif %}
@@ -59,7 +65,6 @@ layout: default
     {% endif %}
 
   {% else %}
-
     <ul class="post-list">
       {% for post in site.posts %}
         {% include post-list-item.html %}

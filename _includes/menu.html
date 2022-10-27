@@ -5,7 +5,7 @@
     <ul>
       <li>
         <a href="{{ '/' | prepend: site.baseurl }}">
-          Home
+          início
         </a>
       </li>
     {% for item in site.data.menu %}
@@ -21,6 +21,12 @@
         {% endif %}
       </li>
     {% endfor %}
+      <li>
+        <a class="tooltip" href="mailto:{{ site.email }}">
+          <img style="margin: 0.4em auto;" src="/assets/images/icon-mail.svg"/>
+          <span class="tooltiptext">{{ site.email }}</span>
+        </a>
+      </li>
     </ul>
   </nav>
 {% endif %}
