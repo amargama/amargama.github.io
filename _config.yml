@@ -44,8 +44,16 @@ markdown: kramdown
 
 plugins:
   - jekyll-paginate
+  - jekyll-sitemap
 
 paginate: 4
 paginate_path: "/page/:num/"
 
 hide_credits: true
+
+defaults:
+  -
+    scope:
+      path:            "google69f7009a5523cc35.html"
+    values:
+      sitemap:         false
